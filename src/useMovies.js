@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function useMovies(query) {
-  const KEY = "bf604d44";
+  const KEY = process.env.REACT_APP_OMDB_API_KEY;
   const [movies, setMovies] = useState([]);
   const [isLoading, setisLoading] = useState(false);
   const [error, setNewError] = useState("");
@@ -13,7 +13,7 @@ export default function useMovies(query) {
           setisLoading(true);
           setNewError(" ");
           const res = await fetch(
-            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+            `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
             {
               signal: controller.signal,
             }
@@ -51,6 +51,7 @@ export default function useMovies(query) {
         controller.abort();
       };
     },
+    // eslint-disable-next-line
     [query]
   );
   return { movies, isLoading, error };

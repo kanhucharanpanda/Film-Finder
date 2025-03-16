@@ -4,7 +4,7 @@ import useMovies from "./useMovies";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
-const KEY = "bf604d44";
+const KEY = process.env.REACT_APP_OMDB_API_KEY;
 //const tempQuery = "Interstellar";
 export default function App() {
   const [watched, setWatched] = useState([]);
